@@ -5,8 +5,9 @@ shopt -s nullglob
 
 files=(migrations/*.sql)
 
-if [ ${files[@]} -eq 0 ]; then
+if [ ${#files[@]} -eq 0 ]; then
   echo "No sql files found..."
+  exit 0
 fi 
 
 until mariadb-admin ping -h"$MARIADB_HOST" --silent; do sleep 1; done
