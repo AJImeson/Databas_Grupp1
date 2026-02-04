@@ -9,7 +9,7 @@ lint_test_sql:
   before_script:
     - pip install sqlfluff
   script:
-    - bash scrips/sqlfluff.sh 
+    - bash scripts/sqlfluff.sh 
   rules:
     - if : $CI_PIPELINE_SOURCE == "push"
 
