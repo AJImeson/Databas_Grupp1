@@ -1,0 +1,31 @@
+stages:
+  - lint
+  - test
+
+# Tests SQL syntax for errors. this test runs every commit.
+lint_test_sql:
+  stage: lint
+  image: python:3.13.1
+  before_script:
+    - pip install sqlfluff
+  script:
+    - sqlfluff lint migrations/ --dialect mariadb
+  rules:
+    - if : $CI_PIPELINE_SOURCE == "push"
+
+# Dry runs the database with all the migrations files. If any step fails it stops.
+dry_run_db:
+  stage: test
+  image: mariadb:12.0.2
+  services:
+    - name: mariadb:12.0.2
+      alias: mariadb 
+  variables:
+    MARIADB_DATABASE: test_db
+    MARIADB_ROOT_PASSWORD: test_passwd
+    MARIADB_HOST: mariadb
+  script:
+    - bash scripts/mariadb-test.sh
+  rules:
+    - if: $CI_PIPELINE_SOURCE =="merge_request_event"
+    - if: $CI_COMMIT_BRANCH == CI_DEFAULT_BRANCH
