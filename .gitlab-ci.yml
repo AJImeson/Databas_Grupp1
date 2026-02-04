@@ -9,7 +9,7 @@ lint_test_sql:
   before_script:
     - pip install sqlfluff
   script:
-    - sqlfluff lint migrations/ --dialect mariadb
+    - bash scrips/sqlfluff.sh 
   rules:
     - if : $CI_PIPELINE_SOURCE == "push"
 
