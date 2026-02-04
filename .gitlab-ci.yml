@@ -16,12 +16,10 @@ lint_test_sql:
 # Dry runs the database with all the migrations files. If any step fails it stops.
 dry_run_db:
   stage: test
-  image: alpine:latest 
+  image: mariadb:12.0.2
   services:
     - name: mariadb:12.0.2
       alias: db_test
-  before_script:
-    - apk add --no-bin-cache bash mariadb-client
   variables:
     MARIADB_DATABASE: test_db
     MARIADB_ROOT_PASSWORD: test_passwd
