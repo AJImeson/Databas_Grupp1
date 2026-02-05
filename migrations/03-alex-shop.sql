@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS products (
     product_id INTEGER NOT NULL AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
     description VARCHAR(60) NOT NULL,
-    SKU VARCHAR(8) NOT NULL UNIQUE,
+    sku VARCHAR(8) NOT NULL UNIQUE,
     selling_price FLOAT NOT NULL,
     wholesale_cost FLOAT NOT NULL,
     manifacturer_id INTEGER NOT NULL,
