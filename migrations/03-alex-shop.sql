@@ -4,13 +4,20 @@ CREATE TABLE IF NOT EXISTS products (
     product_id INTEGER NOT NULL AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
     description VARCHAR(60) NOT NULL,
-    sku VARCHAR(8) NOT NULL UNIQUE,
     selling_price FLOAT NOT NULL,
-    wholesale_cost FLOAT NOT NULL,
     manifacturer_id INTEGER NOT NULL,
     PRIMARY KEY (product_id)
 );
 COMMIT;
+
+SET autocommit = 0;
+CREATE TABLE IF NOT EXISTS product_information (
+    product_information_id INTEGER NOT NULL AUTO_INCREMENT,
+    product_id INTEGER NOT NULL,
+    sku VARCHAR (8),
+    wholesale_cost FLOAT NOT NULL,
+    PRIMARY KEY (product_information_id)
+)
 
 
 SET autocommit = 0;
