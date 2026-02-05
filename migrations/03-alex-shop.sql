@@ -17,7 +17,8 @@ CREATE TABLE IF NOT EXISTS product_information (
     sku VARCHAR (8),
     wholesale_cost FLOAT NOT NULL,
     PRIMARY KEY (product_information_id)
-)
+);
+COMMIT;
 
 
 SET autocommit = 0;
