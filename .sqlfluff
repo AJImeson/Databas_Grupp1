@@ -2,6 +2,7 @@
 [sqlfluff]
 dialect = mariadb
 rules = core
+exclude_rules = L016
 
 #An alias is not allowed under 3 characters
 [sqlfluff:rules:aliasing.length]
@@ -12,7 +13,7 @@ min_alias_length = 3
 capitalisation_policy = upper
 
 [sqlfluff:rules:capitalisation.identifiers]
-extended_capitalisation_policy = lower
+extended_capitalisation_policy = upper
 
 [sqlfluff:rules:capitalisation.functions]
 extended_capitalisation_policy = upper
