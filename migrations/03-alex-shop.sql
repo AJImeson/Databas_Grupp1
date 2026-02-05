@@ -29,7 +29,9 @@ CREATE TABLE IF NOT EXISTS product_description (
     colour VARCHAR(15) NOT NULL,
     material VARCHAR(20) NOT NULL,
     instructions VARCHAR(50) NOT NULL,
-    PRIMARY KEY (product_description_id)
+    PRIMARY KEY (product_description_id),
+    FOREIGN KEY (product_id) REFERENCES product_information (product_id) ON UPDATE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products (product_id) ON UPDATE CASCADE
 );
 COMMIT;
 
