@@ -1,10 +1,4 @@
--- webshop with many products and different categories
--- table 1: products
--- product_id, name, description, sku, selling_price, wholesale_cost, manifacturer_id
 
--- table 2 manifacturers: manifacturer_id, name, country, adress, city, zip, contact_person_id 
-
--- table 3 contact_person_details: contact_person_id, first_name, last_name, email, phone, title 
 SET autocommit = 0;
 CREATE TABLE IF NOT EXISTS products (
     product_id INTEGER NOT NULL AUTO_INCREMENT,
@@ -15,6 +9,19 @@ CREATE TABLE IF NOT EXISTS products (
     wholesale_cost FLOAT NOT NULL,
     manifacturer_id INTEGER NOT NULL,
     PRIMARY KEY (product_id)
+);
+COMMIT;
+
+
+SET autocommit = 0;
+CREATE TABLE IF NOT EXISTS product_description (
+    product_description_id INTEGER NOT NULL AUTO_INCREMENT,
+    product_id INTEGER NOT NULL,
+    size VARCHAR(9) NOT NULL,
+    colour VARCHAR(15) NOT NULL,
+    material VARCHAR(20) NOT NULL,
+    instructions VARCHAR(50) NOT NULL,
+    PRIMARY KEY (product_description_id)
 );
 COMMIT;
 
