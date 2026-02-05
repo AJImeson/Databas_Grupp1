@@ -2,6 +2,7 @@
 [sqlfluff]
 dialect = mariadb
 rules = core
+exclude_rules = L016
 
 #An alias is not allowed under 3 characters
 [sqlfluff:rules:aliasing.length]
