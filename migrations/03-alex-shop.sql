@@ -63,3 +63,6 @@ CREATE TABLE IF NOT EXISTS contact_person_details (
     PRIMARY KEY (contact_person_id)
 );
 COMMIT;
+
+
+-- AUTO_INCREMENT, behöver det vara på alla ställen eller enbart på parent table?
