@@ -4,6 +4,10 @@
 -- Ansvarig: Said
 -- =============================================
 
+DROP SCHEMA IF EXISTS sakila;
+CREATE SCHEMA sakila;
+USE sakila;
+
 SET autocommit = 0;
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
