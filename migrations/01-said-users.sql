@@ -21,7 +21,7 @@ CREATE TABLE addresses (
     city VARCHAR(100) NOT NULL,
     postal_code VARCHAR(20) NOT NULL,
     country VARCHAR(100) DEFAULT 'Sweden',
-    FOREIGN KEY  (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
 -- =============================================
