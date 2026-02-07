@@ -40,3 +40,15 @@ INSERT INTO users (username, password_hash, email, email_confirmed) VALUES
 ('mika', 'pwd123', 'mika@chasacademy.se', FALSE),
 ('alexander', 'pwd123', 'alexander@chasacademy.se', TRUE),
 ('cebrail', 'pwd123', 'cebrail@chasacademy.se', TRUE);
+
+INSERT INTO addresses (user_id, address_type, street, city, postal_code) VALUES
+(1, 'billing', 'Rinkebystråket 15', 'Rinkeby', '16373'),
+(1, 'delivery', 'Rinkebystråket 15', 'Rinkeby', '16373'),
+(2, 'billing', 'Rosengård Centrum 8', 'Malmö', '21437'),
+(2, 'delivery', 'Ramels väg 12', 'Rosengård', '21434'),
+(3, 'billing', 'Hammarkulletorget 3', 'Göteborg', '42437'),
+(3, 'delivery', 'Hammarkulletorget 3', 'Göteborg', '42437'),
+(4, 'billing', 'Hovsjövägen 22', 'Södertälje', '15165'),
+(4, 'delivery', 'Fittja Gårdsväg 6', 'Botkyrka', '14571'),
+(5, 'billing', 'Tenstagången 9', 'Tensta', '16364'),
+(5, 'delivery', 'Tenstagången 9', 'Tensta', '16364');
