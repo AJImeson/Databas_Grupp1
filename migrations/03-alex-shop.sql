@@ -25,20 +25,6 @@ COMMIT;
 
 
 SET autocommit = 0;
-CREATE TABLE IF NOT EXISTS products (
-    product_id INTEGER NOT NULL AUTO_INCREMENT, -- Kan något annat värde vara primary key?
-    name VARCHAR(50) NOT NULL,
-    description VARCHAR(200) NOT NULL, --Bör denna ligga i product_description?
-    selling_price FLOAT NOT NULL,
-    manufacturer_id INTEGER NOT NULL, -- bör den här ligga i product_information?
-    PRIMARY KEY (product_id),
-    FOREIGN KEY (product_id) REFERENCES product_information (product_id) ON UPDATE CASCADE,
-    FOREIGN KEY (product_id) REFERENCES product_description (product_id) ON UPDATE CASCADE
-);
-COMMIT;
-
-
-SET autocommit = 0;
 CREATE TABLE IF NOT EXISTS manufacturers (
     manufacturer_id INTEGER NOT NULL AUTO_INCREMENT, --ska vi ha en annan primary key här?
     name VARCHAR(50) NOT NULL,
@@ -53,6 +39,21 @@ COMMIT;
 
 
 SET autocommit = 0;
+CREATE TABLE IF NOT EXISTS products (
+    product_id INTEGER NOT NULL AUTO_INCREMENT, -- Kan något annat värde vara primary key?
+    name VARCHAR(50) NOT NULL,
+    description VARCHAR(200) NOT NULL, --Bör denna ligga i product_description?
+    selling_price FLOAT NOT NULL,
+    manufacturer_id INTEGER NOT NULL, -- bör den här ligga i product_information?
+    PRIMARY KEY (product_id),
+    FOREIGN KEY (product_id) REFERENCES product_information (product_id) ON UPDATE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES product_description (product_id) ON UPDATE CASCADE,
+    FOREIGN KEY (manufacturer_id) REFERENCES manufacturers (manufacturer_id) ON UPDATE CASCADE
+);
+COMMIT;
+
+
+SET autocommit = 0;
 CREATE TABLE IF NOT EXISTS contact_person_details (
     contact_person_id INTEGER NOT NULL AUTO_INCREMENT,
     first_name VARCHAR(25) NOT NULL,
@@ -60,7 +61,8 @@ CREATE TABLE IF NOT EXISTS contact_person_details (
     email VARCHAR(40) NOT NULL UNIQUE,
     phone INTEGER NOT NULL UNIQUE,
     title VARCHAR(40) NOT NULL,
-    PRIMARY KEY (contact_person_id)
+    PRIMARY KEY (contact_person_id),
+    FOREIGN KEY (contact_person_id) REFERENCES manufacturers (contact_person_id) ON UPDATE CASCADE
 );
 COMMIT;
 
