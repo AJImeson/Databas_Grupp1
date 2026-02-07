@@ -3,7 +3,7 @@ SET autocommit = 0;
 CREATE TABLE IF NOT EXISTS product_information (
     product_information_id INTEGER NOT NULL AUTO_INCREMENT,  --kan den här användas hos orders tabellerna?
     product_id INTEGER NOT NULL,
-    sku VARCHAR(8),
+    sku VARCHAR(8), -- set FOREIGN KEY to axels order_items
     wholesale_cost FLOAT NOT NULL,
     PRIMARY KEY (product_information_id)
 );
