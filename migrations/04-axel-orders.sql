@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS order_items (
 	items_id INTEGER NOT NULL AUTO_INCREMENT,
 	order_id INTEGER NOT NULL,
 	product_id INTEGER NOT NULL,
-	sku VARCHAR(50) NOT NULL -- Mapping for warehouse?
+	sku VARCHAR(50) NOT NULL, -- Mapping for warehouse?
 	qty INTEGER NOT NULL CHECK (qty > 0),
 	warehouse_id INTEGER NOT NULL,
 	PRIMARY KEY (items_id),
