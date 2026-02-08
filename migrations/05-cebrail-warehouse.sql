@@ -33,3 +33,5 @@ VALUES
     (3, 'pet-food-dog-01', 100);
 
 COMMIT;
+ 
+--- retry
