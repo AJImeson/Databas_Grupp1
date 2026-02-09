@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS orders (
     ) ON UPDATE CASCADE,
     CONSTRAINT order_status FOREIGN KEY (status_id) REFERENCES order_status (
         status_id
-    ) ON UPDATE CASCADE
+    ) ON UPDATE CASCADE,
     CONSTRAINT order_adress FOREIGN KEY (shipping_address_id) REFERENCES addresses(id)
 );
 
