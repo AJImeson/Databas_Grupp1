@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS order_items (
     sale_price DECIMAL(10,2) NOT NULL,
     PRIMARY KEY (items_id),
     CONSTRAINT link_order FOREIGN KEY (order_id) REFERENCES orders(order_id),
-    CONSTRAINT link_shop FOREIGN KEY (product_id) REFERENCES products(product_id)
+    CONSTRAINT link_shop FOREIGN KEY (product_id) REFERENCES products(product_id),
     CONSTRAINT link_warehouse FOREIGN KEY (warehouse_id, sku) REFERENCES inventory(warehouse_id, sku) -- Warehouse table has in uppercase, should be converted to lowercase 
 );
 
