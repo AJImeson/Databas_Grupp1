@@ -3,6 +3,8 @@
 -- Ansvarig: Axel
 -- =============================================
 
+SET FOREIGN_KEY_CHECKS = 0;
+
 -- Orders Migration Tables
 
 START TRANSACTION;
@@ -53,4 +55,11 @@ CREATE TABLE IF NOT EXISTS order_items (
     CONSTRAINT link_warehouse FOREIGN KEY (warehouse_id, sku) REFERENCES inventory(warehouse_id, sku) -- Warehouse table has in uppercase, should be converted to lowercase 
 );
 
+INSERT INTO order_status (status_name) VALUES ('awaiting');
+INSERT INTO order_status (status_name) VALUES ('fulfilled');
+INSERT INTO order_status (status_name) VALUES ('cancelled');
+
 COMMIT;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
