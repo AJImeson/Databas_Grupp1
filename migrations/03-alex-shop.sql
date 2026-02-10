@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS contact_person_details (
     first_name VARCHAR(25) NOT NULL,
     last_name VARCHAR(25) NOT NULL,
     email VARCHAR(40) NOT NULL UNIQUE,
-    phone INTEGER NOT NULL UNIQUE,
+    phone VARCHAR(15) NOT NULL UNIQUE,
     title VARCHAR(40) NOT NULL,
     PRIMARY KEY (contact_person_id),
     FOREIGN KEY (contact_person_id) REFERENCES manufacturers (contact_person_id) ON UPDATE CASCADE
