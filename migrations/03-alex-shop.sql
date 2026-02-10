@@ -1,3 +1,5 @@
+USE ace_ventura;
+SET FOREIGN_KEY_CHECKS = 0;
 
 SET autocommit = 0;
 CREATE TABLE IF NOT EXISTS product_information (
@@ -45,9 +47,9 @@ CREATE TABLE IF NOT EXISTS products (
     selling_price FLOAT NOT NULL,
     manufacturer_id INTEGER NOT NULL,
     PRIMARY KEY (product_id),
-    FOREIGN KEY (product_id) REFERENCES product_information (product_id) ON UPDATE CASCADE,
-    FOREIGN KEY (product_id) REFERENCES product_description (product_id) ON UPDATE CASCADE,
-    FOREIGN KEY (manufacturer_id) REFERENCES manufacturers (manufacturer_id) ON UPDATE CASCADE
+    FOREIGN KEY (product_id) REFERENCES product_information (product_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES product_description (product_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (manufacturer_id) REFERENCES manufacturers (manufacturer_id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 COMMIT;
 
@@ -61,6 +63,8 @@ CREATE TABLE IF NOT EXISTS contact_person_details (
     phone VARCHAR(15) NOT NULL UNIQUE,
     title VARCHAR(40) NOT NULL,
     PRIMARY KEY (contact_person_id),
-    FOREIGN KEY (contact_person_id) REFERENCES manufacturers (contact_person_id) ON UPDATE CASCADE
+    FOREIGN KEY (contact_person_id) REFERENCES manufacturers (contact_person_id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 COMMIT;
+SET FOREIGN_KEY_CHECKS = 1;
+

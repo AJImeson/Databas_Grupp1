@@ -2,15 +2,13 @@
 -- Orders 5.5
 -- Ansvarig: Axel
 -- =============================================
-
+USE ace_ventura;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- Orders Migration Tables
 
-START TRANSACTION;
-
 -- Status
-
+SET autocommit = 0;
 CREATE TABLE IF NOT EXISTS order_status (
     status_id INTEGER NOT NULL AUTO_INCREMENT,
     status_name VARCHAR(20) NOT NULL UNIQUE,
@@ -20,9 +18,10 @@ CREATE TABLE IF NOT EXISTS order_status (
         status_name IN ('awaiting', 'fulfilled', 'cancelled')
     )
 );
+COMMIT;
 
 -- Main Table
-
+SET autocommit = 0;
 CREATE TABLE IF NOT EXISTS orders (
     order_id INTEGER NOT NULL AUTO_INCREMENT,
     created_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -38,9 +37,10 @@ CREATE TABLE IF NOT EXISTS orders (
     ) ON UPDATE CASCADE,
     CONSTRAINT order_adress FOREIGN KEY (shipping_address_id) REFERENCES addresses(id)
 );
+COMMIT;
 
 -- Items
-
+SET autocommit = 0;
 CREATE TABLE IF NOT EXISTS order_items (
     items_id INTEGER NOT NULL AUTO_INCREMENT,
     order_id INTEGER NOT NULL,
@@ -51,14 +51,15 @@ CREATE TABLE IF NOT EXISTS order_items (
     sale_price DECIMAL(10,2) NOT NULL,
     PRIMARY KEY (items_id),
     CONSTRAINT link_order FOREIGN KEY (order_id) REFERENCES orders(order_id),
-    CONSTRAINT link_shop FOREIGN KEY (product_id) REFERENCES products(product_id),
-    CONSTRAINT link_warehouse FOREIGN KEY (warehouse_id, sku) REFERENCES inventory(warehouse_id, sku) -- Warehouse table has in uppercase, should be converted to lowercase 
+    CONSTRAINT link_shop FOREIGN KEY (product_id) REFERENCES products(product_id)
+    -- CONSTRAINT link_warehouse FOREIGN KEY (warehouse_id, sku) REFERENCES inventory(warehouse_id, sku) -- Warehouse table has in uppercase, should be converted to lowercase 
 );
+COMMIT;
 
+SET autocommit = 0;
 INSERT INTO order_status (status_name) VALUES ('awaiting');
 INSERT INTO order_status (status_name) VALUES ('fulfilled');
 INSERT INTO order_status (status_name) VALUES ('cancelled');
-
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
