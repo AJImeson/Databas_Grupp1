@@ -1,16 +1,15 @@
 
 SET autocommit = 0;
 CREATE TABLE IF NOT EXISTS product_information (
-    product_information_id INTEGER NOT NULL AUTO_INCREMENT,  --kan den här användas hos orders tabellerna?
+    product_information_id INTEGER NOT NULL AUTO_INCREMENT,
     product_id INTEGER NOT NULL,
-    sku VARCHAR(8), -- set FOREIGN KEY to axels order_items
+    sku VARCHAR(8),
     wholesale_cost FLOAT NOT NULL,
     PRIMARY KEY (product_information_id)
 );
 COMMIT;
 
 
--- Den här tabellen är också viktig för orders
 SET autocommit = 0;
 CREATE TABLE IF NOT EXISTS product_description (
     product_description_id INTEGER NOT NULL AUTO_INCREMENT,
@@ -26,7 +25,7 @@ COMMIT;
 
 SET autocommit = 0;
 CREATE TABLE IF NOT EXISTS manufacturers (
-    manufacturer_id INTEGER NOT NULL AUTO_INCREMENT, --ska vi ha en annan primary key här?
+    manufacturer_id INTEGER NOT NULL AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
     country VARCHAR(20) NOT NULL,
     adress VARCHAR(25) NOT NULL,
@@ -40,11 +39,11 @@ COMMIT;
 
 SET autocommit = 0;
 CREATE TABLE IF NOT EXISTS products (
-    product_id INTEGER NOT NULL AUTO_INCREMENT, -- Kan något annat värde vara primary key?
+    product_id INTEGER NOT NULL AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
-    description VARCHAR(200) NOT NULL, --Bör denna ligga i product_description?
+    description VARCHAR(200) NOT NULL,
     selling_price FLOAT NOT NULL,
-    manufacturer_id INTEGER NOT NULL, -- bör den här ligga i product_information?
+    manufacturer_id INTEGER NOT NULL,
     PRIMARY KEY (product_id),
     FOREIGN KEY (product_id) REFERENCES product_information (product_id) ON UPDATE CASCADE,
     FOREIGN KEY (product_id) REFERENCES product_description (product_id) ON UPDATE CASCADE,
@@ -65,6 +64,3 @@ CREATE TABLE IF NOT EXISTS contact_person_details (
     FOREIGN KEY (contact_person_id) REFERENCES manufacturers (contact_person_id) ON UPDATE CASCADE
 );
 COMMIT;
-
-
--- AUTO_INCREMENT, behöver det vara på alla ställen eller enbart på parent table?
