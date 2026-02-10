@@ -30,12 +30,12 @@ CREATE TABLE IF NOT EXISTS orders (
     shipping_address_id INTEGER NOT NULL,
     PRIMARY KEY (order_id),
     CONSTRAINT order_users FOREIGN KEY (user_id) REFERENCES users (
-        id
+        users_id
     ) ON UPDATE CASCADE,
     CONSTRAINT order_status FOREIGN KEY (status_id) REFERENCES order_status (
         status_id
     ) ON UPDATE CASCADE,
-    CONSTRAINT order_adress FOREIGN KEY (shipping_address_id) REFERENCES addresses(id)
+    CONSTRAINT order_adress FOREIGN KEY (shipping_address_id) REFERENCES addresses(addresses_id)
 );
 COMMIT;
 
