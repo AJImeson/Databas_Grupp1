@@ -4,9 +4,7 @@
 -- Ansvarig: Said
 -- =============================================
 
-DROP SCHEMA IF EXISTS sakila;
-CREATE SCHEMA sakila;
-USE sakila;
+USE ace_ventura;
 
 SET autocommit = 0;
 CREATE TABLE users (
