@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS inventory (
 INSERT IGNORE INTO warehouses (city)
 VALUES ('stockholm'), ('göteborg'), ('malmö');
 
-INSERT INTO inventory (warehouse_id,sku, stock_quantity)
+INSERT INTO inventory (warehouse_id, sku, stock_quantity)
 VALUES
 (1, 'pet-food-dog-01', 500),
 (1, 'pet-leash-cat-02', 300),
