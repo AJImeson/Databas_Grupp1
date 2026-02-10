@@ -1,5 +1,5 @@
 
-USE ace_ventura;
+USE ace_venture;
 
 START TRANSACTION;
 CREATE TABLE IF NOT EXISTS warehouses (
