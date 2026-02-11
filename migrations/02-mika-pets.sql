@@ -19,14 +19,14 @@ COMMIT;
 SET autocommit = 0;
 CREATE TABLE IF NOT EXISTS pets (
     pet_id INT AUTO_INCREMENT PRIMARY KEY,
-    users_id INT NOT NULL, -- Tänkte länka till User-tabellen
+    user_id INT NOT NULL, -- Tänkte länka till User-tabellen
     species_id INT NOT NULL, -- Länkar detta till Species-tabellen
     given_name VARCHAR(100) NOT NULL,
     date_of_birth DATE,
     description TEXT,
     is_alive BOOLEAN DEFAULT 1, -- 1 för levande, 0 för avlidna
     FOREIGN KEY (species_id) REFERENCES species (species_id),
-    FOREIGN KEY (users_id) REFERENCES users (users_id)
+    FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 COMMIT;
 
@@ -41,7 +41,7 @@ COMMIT;
 
 -- Testdata för husdjur (5.3.2-5.3.4)
 SET autocommit = 0;
-INSERT INTO pets (users_id, species_id, given_name, date_of_birth, description, is_alive)
+INSERT INTO pets (user_id, species_id, given_name, date_of_birth, description, is_alive)
 VALUES (1, 1, 'Nalle', '2022-05-16', 'En busig retriever.', 1)
 ;
 COMMIT;
