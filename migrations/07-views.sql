@@ -25,24 +25,22 @@ JOIN product_information USING (product_id)
 JOIN product_description USING (product_id)
 ;
 
--- Vy om kund ringer om sin beställning
 CREATE OR REPLACE VIEW view_customer_order_details AS
 SELECT
-    o.order_id,
-    u.username AS customer_name,
-    os.status_name AS order_status,
-    p.name AS product_name,
-    oi.qty,
-    oi.sale_price,
-    (oi.qty * oi.sale_price) AS line_total,
-    o.created_time
-FROM orders o
-JOIN users u USING (user_id)
-JOIN order_status os USING (status_id)
-JOIN order_items oi USING (order_id)
-JOIN products p USING (product_id)
+    orders.order_id,
+    users.username AS customer_name,
+    order_status.status_name AS order_status,
+    products.name AS product_name,
+    order_items.qty,
+    order_items.sale_price,
+    (order_items.qty * order_items.sale_price) AS line_total,
+    orders.created_time
+FROM orders 
+JOIN users USING (user_id)
+JOIN order_status USING (status_id)
+JOIN order_items USING (order_id)
+JOIN products USING (product_id)
 ;
-
 -- Vy för djur ägare
 CREATE OR REPLACE VIEW view_user_pets AS
 SELECT
