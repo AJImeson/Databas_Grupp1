@@ -9,7 +9,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 
 SET autocommit = 0;
 CREATE TABLE users (
-    users_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
@@ -27,7 +27,7 @@ CREATE TABLE addresses (
     city VARCHAR(100) NOT NULL,
     postal_code VARCHAR(20) NOT NULL,
     country VARCHAR(100) DEFAULT 'Sweden',
-    FOREIGN KEY (user_id) REFERENCES users (users_id)
+    FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 COMMIT;
 
