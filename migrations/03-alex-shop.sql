@@ -58,9 +58,9 @@ COMMIT;
 -- table for sizes, support product_description table.
 SET autocommit = 0;
 CREATE TABLE IF NOT EXISTS sizes (
-  size_id INTEGER NOT NULL AUTO_INCREMENT,
-  size VARCHAR (12) NOT NULL CHECK (size IN ('onesize', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl', 'xxxxl')),
-  PRIMARY KEY (size_id, size)
+    size_id INTEGER NOT NULL AUTO_INCREMENT,
+    size VARCHAR (12) NOT NULL CHECK (size IN ('onesize', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl', 'xxxxl')),
+    PRIMARY KEY (size_id, size)
 );
 COMMIT;
 
@@ -115,10 +115,10 @@ COMMIT;
 -- Insert for contact_person_id
 SET autocommit = 0;
 INSERT INTO contact_person_details (first_name, last_name, email, phone, title) VALUES
-    ('Ace', 'Ventura', 'ace.ventura@petdetective.se', '0701234567', 'master of animals'),
-    ('Alexander', 'Piensoho', 'alexander.piensoho@grupp1.se', '0701345678', 'Cheif technical shitstorm'),
-    ('Said', 'Borna', 'said.borna@grupp1.se', '0731234567', 'Head of Vibe coding'),
-    ('Axel', 'Imse', 'axel.imse@grupp1.se', '0707654321', 'Head of Scotland')
+('Ace', 'Ventura', 'ace.ventura@petdetective.se', '0701234567', 'master of animals'),
+('Alexander', 'Piensoho', 'alexander.piensoho@grupp1.se', '0701345678', 'Cheif technical shitstorm'),
+('Said', 'Borna', 'said.borna@grupp1.se', '0731234567', 'Head of Vibe coding'),
+('Axel', 'Imse', 'axel.imse@grupp1.se', '0707654321', 'Head of Scotland')
 ;
 COMMIT;
 
@@ -126,10 +126,10 @@ COMMIT;
 -- insert for manufacturers
 SET autocommit = 0;
 INSERT INTO manufacturers (name, country, adress, city, zip, contact_person_id) VALUES
-    ('Petdetectives INC', 'USA', 'vetura street 113', 'Johns Creek', '12345', '1'),
-    ('Dogs & Cats AB', 'Sweden', 'hundgatan 1337', 'flen', '14452', '2'),
-    ('HamsterAI INC', 'Dubai', 'gemeni street 2', 'AI city', '11122', '3'),
-    ('Scotland sheep LTD', 'Scotland', 'sheep street 5', 'sheeptown', '22244', '4')
+('Petdetectives INC', 'USA', 'vetura street 113', 'Johns Creek', '12345', '1'),
+('Dogs & Cats AB', 'Sweden', 'hundgatan 1337', 'flen', '14452', '2'),
+('HamsterAI INC', 'Dubai', 'gemeni street 2', 'AI city', '11122', '3'),
+('Scotland sheep LTD', 'Scotland', 'sheep street 5', 'sheeptown', '22244', '4')
 ;
 COMMIT;
 
@@ -137,10 +137,10 @@ COMMIT;
 -- inserts for products
 SET autocommit = 0;
 INSERT INTO products (name, description, selling_price, manufacturer_id) VALUES
-    ('Mechanical rhino', 'Mechanical rhino that helps you spy on people', '60000', '1'),
-    ('Taxidermy dog', 'Get your old dog back to life with taxidermy!', '599', '2'),
-    ('AI driven hamster', 'hamster that can code your next app!', '3999', '3'),
-    ('Sheep fur', 'The finest sheep fur in all of Scotland', '19990', '4')
+('Mechanical rhino', 'Mechanical rhino that helps you spy on people', '60000', '1'),
+('Taxidermy dog', 'Get your old dog back to life with taxidermy!', '599', '2'),
+('AI driven hamster', 'hamster that can code your next app!', '3999', '3'),
+('Sheep fur', 'The finest sheep fur in all of Scotland', '19990', '4')
 ;
 COMMIT;
 
@@ -148,42 +148,42 @@ COMMIT;
 -- inserts for product_information
 SET autocommit = 0;
 INSERT INTO product_information (product_description_id, product_id, sku, wholesale_cost) VALUES
-    ('1', '1', 'TOY001', '30000'),
-    ('2', '2', 'SER001', '199'),
-    ('3', '2', 'SER002', '199'),
-    ('4', '3', 'VIB001', '1799'),
-    ('5', '4', 'FUR001', '11990')
+('1', '1', 'TOY001', '30000'),
+('2', '2', 'SER001', '199'),
+('3', '2', 'SER002', '199'),
+('4', '3', 'VIB001', '1799'),
+('5', '4', 'FUR001', '11990')
 ;
 COMMIT;
 
 -- inserts for sizes
 SET autocommit = 0;
 INSERT INTO sizes (size) VALUES
-    ('onesize'),
-    ('xs'),
-    ('s'),
-    ('m'),
-    ('l'),
-    ('xl'),
-    ('xxl'),
-    ('xxxl'),
-    ('xxxxl')
+('onesize'),
+('xs'),
+('s'),
+('m'),
+('l'),
+('xl'),
+('xxl'),
+('xxxl'),
+('xxxxl')
 ;
 COMMIT;
 
 -- inserts for product_description
 SET autocommit = 0;
 INSERT INTO product_description (product_id, size_id, colour_id, material_id, instruction_id) VALUES
-    ('1', '1', '4', '1', '2')
+('1', '1', '4', '1', '2')
 ;
 COMMIT;
 
 -- inserts for materials
 INSERT INTO materials (material) VALUES
-    ('mechanical'),
-    ('cotton'),
-    ('wool'),
-    ('leather')
+('mechanical'),
+('cotton'),
+('wool'),
+('leather')
 ;
 COMMIT;
 
@@ -191,18 +191,18 @@ COMMIT;
 -- Inserts for colours
 SET autocommit = 0;
 INSERT INTO colours (colour) VALUES
-    ('blue'),
-    ('green'),
-    ('red'),
-    ('grey')
+('blue'),
+('green'),
+('red'),
+('grey')
 ;
 COMMIT;
 
 -- inserts for instructions
 SET autocommit = 0;
 INSERT INTO instructions (machinewash) VALUES
-    (true),
-    (false)
+(TRUE),
+(FALSE)
 ;
 COMMIT;
 
