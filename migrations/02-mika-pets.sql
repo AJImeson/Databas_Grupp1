@@ -4,7 +4,6 @@
 -- =============================================
 
 USE ace_ventura;
-SET FOREIGN_KEY_CHECKS = 0;
 
 -- Skapa tabellen för arter
 SET autocommit = 0;

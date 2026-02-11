@@ -3,7 +3,6 @@
 -- Ansvarig: Axel
 -- =============================================
 USE ace_ventura;
-SET FOREIGN_KEY_CHECKS = 0;
 
 -- Orders Migration Tables
 

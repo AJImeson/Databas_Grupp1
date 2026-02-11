@@ -4,7 +4,6 @@
 -- 5.7.1: skicka meddelanden mellan användare
 -- 5.7.2: parent_id för trådar, NULL = ny tråd
 USE ace_ventura;
-SET FOREIGN_KEY_CHECKS = 0;
 
 SET autocommit = 0;
 CREATE TABLE messages (
