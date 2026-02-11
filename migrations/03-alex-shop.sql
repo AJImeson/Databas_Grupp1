@@ -68,7 +68,7 @@ COMMIT;
 SET autocommit = 0;
 CREATE TABLE IF NOT EXISTS materials (
     material_id INTEGER NOT NULL AUTO_INCREMENT,
-    material VARCHAR(25) NOT NULL,
+    material VARCHAR(25) NOT NULL CHECK (material IN ('mechanical', 'cotton', 'wool', 'leather')),
     PRIMARY KEY (material_id, material)
 );
 COMMIT;
@@ -76,7 +76,7 @@ COMMIT;
 -- table for colours
 CREATE TABLE IF NOT EXISTS colours (
     colour_id INTEGER NOT NULL AUTO_INCREMENT,
-    colour VARCHAR(10) NOT NULL,
+    colour VARCHAR(10) NOT NULL CHECK (colour IN ('blue', 'green', 'red', 'grey')),
     PRIMARY KEY (colour_id, colour)
 );
 COMMIT;
@@ -85,7 +85,7 @@ COMMIT;
 SET autocommit = 0;
 CREATE TABLE IF NOT EXISTS instructions (
     instruction_id INTEGER NOT NULL AUTO_INCREMENT,
-    machinewash BOOLEAN NOT NULL,
+    machinewash BOOLEAN NOT NULL CHECK (machinewash IN (TRUE, FALSE)),
     PRIMARY KEY (instruction_id, machinewash)
 );
 COMMIT;
