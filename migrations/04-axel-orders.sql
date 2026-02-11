@@ -62,5 +62,26 @@ INSERT INTO order_status (status_name) VALUES ('fulfilled');
 INSERT INTO order_status (status_name) VALUES ('cancelled');
 COMMIT;
 
+ -- Dummy data for orders 
+SET autocommit = 0;
+INSERT INTO orders (user_id, status_id, shipping_address_id) VALUES
+--User, Status, Address - Correct order?
+(1, 1, 10), -- Awaiting
+(2, 2, 11), -- Fulfilled
+(3, 3, 12), -- Cancelled
+(4, 2, 13),
+(5, 2, 14),
+(6, 3, 15),
+(7, 1, 16);
+COMMIT;
+
+-- Dummy data for Items
+SET autocommit = 0;
+INSERT INTO order_items (order_id, product_id, sku, qty, warehouse_id, sale_price) VALUES
+(1, 001, 'DB-15kg' ,4 , 1 , 35,99),
+(1, 002, 'DB-20kg' ,4 ,1 , 39,99),
+(1, 003, 'DB-26kg' ,4 ,1 , 42,99);
+COMMIT;
+
 SET FOREIGN_KEY_CHECKS = 1;
 
