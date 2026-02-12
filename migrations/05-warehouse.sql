@@ -25,10 +25,9 @@ CREATE TABLE warehouses (
 
 -- Creating Test data/Seeding the database for development
 INSERT INTO warehouses (city, adress, postal_code, phone_number) VALUES
-    ('Stockholm', 'Lagergränd 10', '111 22', '08-123 45 67'),
-    ('Göteborg', 'Hamngatann 5', '411 01', '031-99 88 77'),
-    ('Malmö', 'Södra vägen 22', '211 44', '040-55 44 33');
-
+('Stockholm', 'Lagergränd 10', '111 22', '08-123 45 67'),
+('Göteborg', 'Hamngatann 5', '411 01', '031-99 88 77'),
+('Malmö', 'Södra vägen 22', '211 44', '040-55 44 33');
 
 -- Table for stock balances
 CREATE TABLE inventory (
@@ -48,15 +47,15 @@ CREATE TABLE inventory (
     UNIQUE (warehouse_id, sku)
 );
 
-
 -- Creating Test data: Inventory level
 INSERT INTO inventory (warehouse_id, sku, stock_quantity)
 VALUES
-    (1, 'TOY001', 500),
-    (1, 'SER001', 300),
-    (2, 'TOY001', 5),
-    (2, 'SER002', 0),
-    (3, 'VIB001', 100)
+(1, 'TOY001', 500),
+(1, 'SER001', 300),
+(2, 'TOY001', 5),
+(2, 'SER002', 0),
+(3, 'VIB001', 100)
+
 ON DUPLICATE KEY UPDATE stock_quantity = VALUES(stock_quantity);
 
 CREATE VIEW  inventory_details AS
