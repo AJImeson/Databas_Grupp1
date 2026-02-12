@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS order_items (
     items_id INTEGER NOT NULL AUTO_INCREMENT,
     order_id INTEGER NOT NULL,
     product_id INTEGER NOT NULL,
+    inventory_id INTEGER NOT NULL,
     sku VARCHAR(8) NOT NULL,
     qty INTEGER NOT NULL CHECK (qty > 0),
     warehouse_id INTEGER NOT NULL,
@@ -51,7 +52,7 @@ CREATE TABLE IF NOT EXISTS order_items (
     PRIMARY KEY (items_id),
     CONSTRAINT link_order FOREIGN KEY (order_id) REFERENCES orders (order_id),
     CONSTRAINT link_shop FOREIGN KEY (product_id) REFERENCES products (product_id),
-    CONSTRAINT link_warehouse FOREIGN KEY (warehouse_id, sku) REFERENCES inventory (warehouse_id, sku) ON UPDATE CASCADE
+    CONSTRAINT link_inventory FOREIGN KEY (warehouse_id, sku) REFERENCES inventory (warehouse_id, sku) ON UPDATE CASCADE
 );
 COMMIT;
 
