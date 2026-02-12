@@ -34,7 +34,7 @@ INSERT INTO warehouses (city, adress, postal_code, phone_number) VALUES
 CREATE TABLE inventory (
     inventory_id INTEGER PRIMARY KEY AUTO_INCREMENT,
     warehouse_id INTEGER,
-    sku VARCHAR(8) NOT NULL,
+    sku VARCHAR(20) NOT NULL,
     stock_quantity INTEGER DEFAULT 0 CHECK (stock_quantity >=0),
     CONSTRAINT fk_inventory_warehouse
         FOREIGN KEY (warehouse_id)
