@@ -35,6 +35,7 @@ CREATE TABLE inventory (
     warehouse_id INTEGER,
     sku VARCHAR(8) NOT NULL,
     stock_quantity INTEGER DEFAULT 0 CHECK (stock_quantity >=0),
+    UNIQUE (warehouse_id, sku),
     CONSTRAINT fk_inventory_warehouse
     FOREIGN KEY (warehouse_id) REFERENCES warehouses (warehouse_id)
     ON UPDATE CASCADE
@@ -42,8 +43,7 @@ CREATE TABLE inventory (
     CONSTRAINT fk_inv_sku
     FOREIGN KEY (sku) REFERENCES product_information (sku)
     ON UPDATE CASCADE
-    ON DELETE CASCADE,
-    UNIQUE (warehouse_id, sku)
+    ON DELETE CASCADE
 );
 
 -- Creating Test data: Inventory level
