@@ -19,7 +19,7 @@ CREATE TABLE warehouses (
     city VARCHAR(100) NOT NULL,
     adress VARCHAR(255) NOT NULL,
     postal_code VARCHAR(20),
-    phone_number VARCHAR(20)
+    phone_number VARCHAR(20),
     UNIQUE(city)
 );
 
