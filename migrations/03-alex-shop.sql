@@ -1,8 +1,5 @@
 USE ace_ventura;
-<<<<<<< HEAD
-=======
 
->>>>>>> 25b2b71 (tog bort SET FOREIGN_KEY_CHECKS = 0;)
 
 -- table contact_person_id
 SET autocommit = 0;
