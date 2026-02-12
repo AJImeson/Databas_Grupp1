@@ -12,7 +12,7 @@ SELECT
     stock_quantity
 FROM warehouses 
 JOIN inventory USING (warehouse_id)
-jOIN product_information USING (sku)
+JOIN product_information USING (sku)
 JOIN products USING (product_id)
 ;
 

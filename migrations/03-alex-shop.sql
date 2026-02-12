@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS product_information (
     product_information_id INTEGER NOT NULL AUTO_INCREMENT,
     product_description_id INTEGER NOT NULL UNIQUE,
     product_id INTEGER NOT NULL,
-    sku VARCHAR(8) NOT NULL,
+    sku VARCHAR(8) NOT NULL UNIQUE,
     wholesale_cost DECIMAL(10,2) NOT NULL,
     PRIMARY KEY (product_information_id),
     FOREIGN KEY (product_id) REFERENCES products (product_id) ON DELETE RESTRICT ON UPDATE CASCADE,

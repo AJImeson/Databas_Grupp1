@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS order_items (
     items_id INTEGER NOT NULL AUTO_INCREMENT,
     order_id INTEGER NOT NULL,
     product_id INTEGER NOT NULL,
-    sku VARCHAR(20) NOT NULL,
+    sku VARCHAR(8) NOT NULL,
     qty INTEGER NOT NULL CHECK (qty > 0),
     warehouse_id INTEGER NOT NULL,
     sale_price DECIMAL(10,2) NOT NULL,

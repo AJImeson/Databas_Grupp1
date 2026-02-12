@@ -33,15 +33,14 @@ INSERT INTO warehouses (city, adress, postal_code, phone_number) VALUES
 CREATE TABLE inventory (
     inventory_id INTEGER PRIMARY KEY AUTO_INCREMENT,
     warehouse_id INTEGER,
-    sku VARCHAR(20) NOT NULL,
+    sku VARCHAR(8) NOT NULL,
     stock_quantity INTEGER DEFAULT 0 CHECK (stock_quantity >=0),
     CONSTRAINT fk_inventory_warehouse
-    FOREIGN KEY (warehouse_id)
+    FOREIGN KEY (warehouse_id) REFERENCES warehouse (warehouse_id)
     ON UPDATE CASCADE
     ON DELETE CASCADE,
     CONSTRAINT fk_inv_sku
-    FOREIGN KEY (sku)
-    REFERENCES product_information (sku)
+    FOREIGN KEY (sku) REFERENCES product_information (sku)
     ON UPDATE CASCADE
     ON DELETE CASCADE,
     UNIQUE (warehouse_id, sku)
