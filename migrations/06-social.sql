@@ -12,8 +12,8 @@ CREATE TABLE messages (
     receiver_id INT NOT NULL,
     parent_id INT DEFAULT NULL,
     body TEXT NOT NULL,
-    FOREIGN KEY (sender_id) REFERENCES users (users_id),
-    FOREIGN KEY (receiver_id) REFERENCES users (users_id),
+    FOREIGN KEY (sender_id) REFERENCES users (user_id),
+    FOREIGN KEY (receiver_id) REFERENCES users (user_id),
     FOREIGN KEY (parent_id) REFERENCES messages (messages_id)
 );
 COMMIT;
