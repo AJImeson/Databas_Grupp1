@@ -65,7 +65,7 @@ SELECT
     war.city AS warehouse_city,
     inv.sku AS product_sku,
     inv.stock_quantity AS current_stock
-FROM warehouse AS war
+FROM warehouses AS war
 JOIN inventory AS inv
     ON war.warehouse_id = inv.warehouse_id;
 
