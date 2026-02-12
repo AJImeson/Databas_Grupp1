@@ -55,6 +55,13 @@ JOIN species USING (species_id)
 
 
 -- TEST-QUERIES (Kör dessa gör att se resultat)
+
 -- SELECT * FROM view_warehouse_stock;
+
 -- SELECT * FROM view_product_catalog;
+
+-- SELECT * FROM view_customer_order_details
+-- WHERE costumer_name = 'Alex'
+-- ORDER BY created_time DESC;
+
 -- SELECT * FROM view_user_pets;
