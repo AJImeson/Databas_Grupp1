@@ -53,11 +53,11 @@ CREATE TABLE inventory (
 -- Creating Test data: Inventory level
 INSERT INTO inventory (warehouse_id, sku, stock_quantity)
 VALUES
-    (1, 'pet-food-dog-01', 500),
-    (1, 'pet-leash-cat-02', 300),
-    (2, 'pet-food-dog-01', 5),
-    (2, 'pet-leash-cat-02', 0),
-    (3, 'pet-food-dog-01', 100)
+    (1, 'TOY001', 500),
+    (1, 'SER001', 300),
+    (2, 'TOY001', 5),
+    (2, 'SER002', 0),
+    (3, 'VIB001', 100)
 ON DUPLICATE KEY UPDATE stock_quantity = VALUES(stock_quantity);
 
 CREATE VIEW  inventory_details AS
