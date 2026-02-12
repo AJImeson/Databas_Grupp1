@@ -6,9 +6,6 @@
 
 USE ace_ventura;  
 
--- Stop the check of foreign keys to clean up
-SET FOREIGN_KEY_CHECKS = 0;
-
 START TRANSACTION;
 
 -- Clean up the database
@@ -18,7 +15,7 @@ DROP TABLE IF EXISTS warehouses;
 
 -- Table for locations
 CREATE TABLE warehouses (
-    warehouse_id INT AUTO_INCREMENT PRIMARY KEY,
+    warehouse_id INTEGER AUTO_INCREMENT PRIMARY KEY,
     city VARCHAR(100) NOT NULL,
     adress VARCHAR(255) NOT NULL,
     postal_code VARCHAR(20),
@@ -35,10 +32,10 @@ INSERT INTO warehouses (city, adress, postal_code, phone_number) VALUES
  
 -- Table for stock balances
 CREATE TABLE inventory (
-    inventory_id INT PRIMARY KEY AUTO_INCREMENT,
-    warehouse_id INT,
-    sku VARCHAR(50) NOT NULL,
-    stock_quantity INT DEFAULT 0 CHECK (stock_quantity >=0),
+    inventory_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    warehouse_id INTEGER,
+    sku VARCHAR(8) NOT NULL,
+    stock_quantity INTEGER DEFAULT 0 CHECK (stock_quantity >=0),
     CONSTRAINT fk_inventory_warehouse
         FOREIGN KEY (warehouse_id)
         REFERENCES warehouses (warehouse_id)
@@ -73,5 +70,3 @@ JOIN inventory AS inv
     ON war.warehouse_id = inv.warehouse_id;
 
 COMMIT;
-
-SET FOREIGN_KEY_CHECKS = 1;
