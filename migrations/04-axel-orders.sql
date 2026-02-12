@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS order_items (
     items_id INTEGER NOT NULL AUTO_INCREMENT,
     order_id INTEGER NOT NULL,
     product_id INTEGER NOT NULL,
-    sku VARCHAR(8) NOT NULL,
+    sku VARCHAR(20) NOT NULL,
     qty INTEGER NOT NULL CHECK (qty > 0),
     warehouse_id INTEGER NOT NULL,
     sale_price DECIMAL(10,2) NOT NULL,
@@ -61,12 +61,12 @@ INSERT INTO order_status (status_name) VALUES ('fulfilled');
 INSERT INTO order_status (status_name) VALUES ('cancelled');
 COMMIT;
 
- -- Dummy data for orders
+-- Dummy data for orders
 SET autocommit = 0;
 INSERT INTO orders (user_id, status_id, shipping_address_id) VALUES
-(1, 1, 1), -- Awaiting
-(2, 2, 2), -- Fulfilled
-(3, 3, 3), -- Cancelled
+(1, 1, 1),
+(2, 2, 2),
+(3, 3, 3),
 (4, 2, 4),
 (5, 1, 5);
 COMMIT;
