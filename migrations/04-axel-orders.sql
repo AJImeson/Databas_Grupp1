@@ -61,7 +61,7 @@ INSERT INTO order_status (status_name) VALUES ('fulfilled');
 INSERT INTO order_status (status_name) VALUES ('cancelled');
 COMMIT;
 
- -- Dummy data for orders 
+ -- Dummy data for orders
 SET autocommit = 0;
 INSERT INTO orders (user_id, status_id, shipping_address_id) VALUES
 (1, 1, 1), -- Awaiting
