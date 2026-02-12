@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS order_items (
     PRIMARY KEY (items_id),
     CONSTRAINT link_order FOREIGN KEY (order_id) REFERENCES orders (order_id),
     CONSTRAINT link_shop FOREIGN KEY (product_id) REFERENCES products (product_id),
-    CONSTRAINT link_inventory FOREIGN KEY (warehouse_id, sku) REFERENCES inventory (warehouse_id, sku) ON UPDATE CASCADE
+    CONSTRAINT link_inventory FOREIGN KEY (inventory_id) REFERENCES inventory (inventory_id) ON UPDATE CASCADE
 );
 COMMIT;
 
@@ -74,10 +74,8 @@ COMMIT;
 
 -- Dummy data for Items
 SET autocommit = 0;
-INSERT INTO order_items (order_id, product_id, qty, warehouse_id, sale_price) VALUES
-(1, 1, 4, 1, 35.99),
-(1, 2, 4, 1, 39.99),
-(1, 3, 4, 1, 42.99);
+INSERT INTO order_items (order_id, product_id, inventory_id, sku, qty, warehouse_id, sale_price) VALUES
+(1, 1, 1, 'TOY001', 1, 1, 60000.00),
+(2, 2, 2, 'SER001', 2, 1, 599.00),
+(4, 3, 5, 'VIB001', 1, 3, 3999.00);
 COMMIT;
-
-
