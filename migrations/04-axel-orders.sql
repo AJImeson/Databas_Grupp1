@@ -3,7 +3,6 @@
 -- Ansvarig: Axel
 -- =============================================
 USE ace_ventura;
-SET FOREIGN_KEY_CHECKS = 0;
 
 -- Orders Migration Tables
 
@@ -82,5 +81,4 @@ INSERT INTO order_items (order_id, product_id, qty, warehouse_id, sale_price) VA
 (1, 003, 4, 1, 42,99);
 COMMIT;
 
-SET FOREIGN_KEY_CHECKS = 1;
 
