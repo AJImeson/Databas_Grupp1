@@ -36,7 +36,7 @@ CREATE TABLE inventory (
     sku VARCHAR(8) NOT NULL,
     stock_quantity INTEGER DEFAULT 0 CHECK (stock_quantity >=0),
     CONSTRAINT fk_inventory_warehouse
-    FOREIGN KEY (warehouse_id) REFERENCES warehouse (warehouse_id)
+    FOREIGN KEY (warehouse_id) REFERENCES warehouses (warehouse_id)
     ON UPDATE CASCADE
     ON DELETE CASCADE,
     CONSTRAINT fk_inv_sku
