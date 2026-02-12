@@ -4,7 +4,7 @@
 -- Ansvarig: Cebrail
 -- =============================================================
 
-USE ace_ventura;  
+USE ace_ventura;
 
 START TRANSACTION;
 
@@ -29,7 +29,7 @@ INSERT INTO warehouses (city, adress, postal_code, phone_number) VALUES
     ('Göteborg', 'Hamngatann 5', '411 01', '031-99 88 77'),
     ('Malmö', 'Södra vägen 22', '211 44', '040-55 44 33');
 
- 
+
 -- Table for stock balances
 CREATE TABLE inventory (
     inventory_id INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -42,7 +42,7 @@ CREATE TABLE inventory (
         ON UPDATE CASCADE
         ON DELETE CASCADE,
     CONSTRAINT fk_inv_sku
-        FOREIGN KEY (sku) 
+        FOREIGN KEY (sku)
         REFERENCES product_information (sku)
         ON UPDATE CASCADE
         ON DELETE CASCADE,
