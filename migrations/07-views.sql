@@ -6,13 +6,13 @@
 -- Vy för lagerstatus
 CREATE OR REPLACE VIEW view_warehouse_stock AS
 SELECT  
-    CITY AS warehouse_city,
+    city AS warehouse_city,
     name AS product_name,
     sku,
-    STOCK_QUANTITY
-FROM WAREHOUSES 
-JOIN INVENTORY USING (WAREHOUSE_ID)
-JOIN product_information USING (sku)
+    stock_quantity
+FROM warehouses 
+JOIN inventory USING (warehouse_id)
+jOIN product_information USING (sku)
 JOIN products USING (product_id)
 ;
 
