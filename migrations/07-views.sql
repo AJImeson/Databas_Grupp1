@@ -19,10 +19,13 @@ JOIN products USING (product_id)
 -- Vy för produktbeskrivningar
 CREATE OR REPLACE VIEW view_product_catalog AS
 SELECT
-    name, sku, selling_price, size, colour, material
+    name, sku, recommended_price AS selling_price, size, colour, material
 FROM products
 JOIN product_information USING (product_id)
 JOIN product_description USING (product_id)
+JOIN sizes USING (size_id)
+JOIN colours USING (colour_id)
+JOIN materials USING (material_id);
 ;
 
 CREATE OR REPLACE VIEW view_customer_order_details AS
@@ -34,12 +37,15 @@ SELECT
     order_items.qty,
     order_items.sale_price,
     (order_items.qty * order_items.sale_price) AS line_total,
+    warehouses.city AS shipping_from_warehouse,
     orders.created_time
 FROM orders 
 JOIN users USING (user_id)
 JOIN order_status USING (status_id)
 JOIN order_items USING (order_id)
 JOIN products USING (product_id)
+JOIN inventory USING (inventory_id)
+JOIN warehouses USING (warehouse_id)
 ;
 -- Vy för djur ägare
 CREATE OR REPLACE VIEW view_user_pets AS

@@ -73,8 +73,8 @@ COMMIT;
 
 -- Dummy data for Items
 SET autocommit = 0;
-INSERT INTO order_items (order_id, product_id, inventory_id, sku, qty, warehouse_id, sale_price) VALUES
-(1, 1, 1, 'TOY001', 1, 1, 60000.00),
-(2, 2, 2, 'SER001', 2, 1, 599.00),
-(4, 3, 5, 'VIB001', 1, 3, 3999.00);
+INSERT INTO order_items (order_id, product_id, inventory_id, sku, qty, sale_price) VALUES
+(1, 1, 1, 'TOY001', 1, 60000.00),
+(2, 2, 2, 'SER001', 2, 599.00),
+(4, 3, 5, 'VIB001', 1, 3999.00);
 COMMIT;
