@@ -47,7 +47,6 @@ CREATE TABLE IF NOT EXISTS order_items (
     inventory_id INTEGER NOT NULL,
     sku VARCHAR(8) NOT NULL,
     qty INTEGER NOT NULL CHECK (qty > 0),
-    warehouse_id INTEGER NOT NULL,
     sale_price DECIMAL(10,2) NOT NULL,
     PRIMARY KEY (items_id),
     CONSTRAINT link_order FOREIGN KEY (order_id) REFERENCES orders (order_id),
