@@ -54,10 +54,12 @@ SELECT
     users.username AS owner_name,
     pets.given_name AS pet_name,
     GROUP_CONCAT(DISTINCT species_common_names.common_name SEPARATOR ', ') AS species_names,
+    GROUP_CONCAT(DISTINCT species_latin_names.latin_name SEPARATOR ', ') AS latin_names,
     pets.is_alive
 FROM users 
 JOIN pets ON users.user_id = pets.user_id
 JOIN species_common_names ON pets.species_id = species_common_names.species_id
+JOIN species_latin_names ON pets.species_id = species_latin_names.species_id
 GROUP BY pets.pet_id
 ;
 
