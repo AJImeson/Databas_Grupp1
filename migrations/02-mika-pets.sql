@@ -80,7 +80,7 @@ COMMIT;
 -- Testdata för husdjur (5.3.2-5.3.4)
 SET autocommit = 0;
 INSERT INTO pets (user_id, species_id, given_name, date_of_birth, description, is_alive)
-VALUES (1, 1, 'Nalle', '2022-05-16', 'En busig retriever.', 1)
+VALUES (1, @dog_id, 'Nalle', '2022-05-16', 'En busig retriever.', 1)
 ;
 COMMIT;
 SET FOREIGN_KEY_CHECKS = 1;
