@@ -47,16 +47,18 @@ JOIN products USING (product_id)
 JOIN inventory USING (inventory_id)
 JOIN warehouses USING (warehouse_id)
 ;
--- Vy för djur ägare
+
+-- Vy för djur ägare (uppdaterad)
 CREATE OR REPLACE VIEW view_user_pets AS
 SELECT
-    username AS owner_name,
-    given_name AS per_name,
-    common_name AS species,
-    is_alive
-FROM users
-JOIN pets USING (user_id)
-JOIN species USING (species_id)
+    u.username AS owner_name,
+    p.given_name AS pet_name,
+    GROUP_CONCAT(DISTINCT cn.common_name SEPARATOR ', ' AS species_names,
+    p.is_alive
+FROM users u
+JOIN pets p ON u.user_id = user_id
+JOIN species_common_names cn ON p.species_id = cn.species_id
+GROUP BY p.pet_id
 ;
 
 
