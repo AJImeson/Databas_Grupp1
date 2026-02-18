@@ -14,18 +14,18 @@ COMMIT;
 
 -- Tabellen för vanliga namn (kan ha flera namn)
 CREATE TABLE IF NOT EXISTS species_common_names (
-name_id INT AUTO_INCREMENT PRIMARY KEY,
-species_id INT NOT NULL,
-common_name VARCHAR(100) NOT NULL,
-FOREIGN KEY (species_id) REFERENCES species (species_id) ON DELETE CASCADE
+    name_id INT AUTO_INCREMENT PRIMARY KEY,
+    species_id INT NOT NULL,
+    common_name VARCHAR(100) NOT NULL,
+    FOREIGN KEY (species_id) REFERENCES species (species_id) ON DELETE CASCADE
 );
 
 -- Tabellen för latinska namn (kan ha flera namn)
 CREATE TABLE IF NOT EXISTS species_latin_names (
-name_id INT AUTO_INCREMENT PRIMARY KEY,
-species_id INT NOT NULL,
-latin_name VARCHAR(100) NOT NULL,
-FOREIGN KEY (species_id) REFERENCES species (species_id) ON DELETE CASCADE
+    name_id INT AUTO_INCREMENT PRIMARY KEY,
+    species_id INT NOT NULL,
+    latin_name VARCHAR(100) NOT NULL,
+    FOREIGN KEY (species_id) REFERENCES species (species_id) ON DELETE CASCADE
 );
 
 -- Skapa tabellen för husdjur
@@ -47,7 +47,7 @@ COMMIT;
 SET autocommit = 0;
 -- Testdata för Hund
 INSERT INTO species () VALUES ();
-SET @dog_id = LAST_INSERT_ID(); -- sparar id i en variabel
+SET @dog_id = LAST_INSERT_ID() -- sparar id i en variabel
 ;
 
 INSERT INTO species_common_names (species_id, common_name) VALUES
@@ -57,14 +57,13 @@ INSERT INTO species_common_names (species_id, common_name) VALUES
 
 INSERT INTO species_latin_names (species_id, latin_name) VALUES
 (@dog_id, 'Canis lupus familiaris'),
-(@dog_id, 'Canis familiaris'),
-(LAST_INSERT_ID(), 'Felis catus')
-(LAST_INSERT_ID(), 'Felis silvestris catus')
+(@dog_id, 'Canis familiaris')
 ;
 
 -- lägg till katt
 INSERT INTO species () VALUES (); --sparar id i en variabel
-SET @cat_id = LAST_INSERT_ID();
+SET @cat_id = LAST_INSERT_ID()
+;
 
 INSERT INTO species_common_names (species_id, common_name) VALUES
 (@cat_id, 'Katt'),
