@@ -8,7 +8,7 @@ USE ace_ventura;
 -- Skapar art-tabellen nu utan namn
 SET autocommit = 0;
 CREATE TABLE IF NOT EXISTS species (
-    species_id INT AUTO_INCREMENT PRIMARY KEY,
+    species_id INT AUTO_INCREMENT PRIMARY KEY
 );
 COMMIT;
 
@@ -43,22 +43,37 @@ CREATE TABLE IF NOT EXISTS pets (
 );
 COMMIT;
 
--- Testdata för arter (5.3.1)
+-- Testdata  (5.3.1)
 SET autocommit = 0;
+-- Testdata för Hund
 INSERT INTO species () VALUES ();
+SET @dog_id = LAST_INSERT_ID(); -- sparar id i en variabel
+;
 
 INSERT INTO species_common_names (species_id, common_name) VALUES
-(LAST_INSERT_ID(), 'Hund'),
-(LAST_INSERT_ID(), 'Voffsis'),
-(LAST_INSERT_ID(), 'Katt'),
-(LAST_INSERT_ID(), 'kissemiss')
+(@dog_id, 'Hund'),
+(@dog_id, 'Voffsis')
 ;
 
 INSERT INTO species_latin_names (species_id, latin_name) VALUES
-(LAST_INSERT_ID(), 'Canis lupus familiaris'),
-(LAST_INSERT_ID(), 'Canis familiaris'),
+(@dog_id, 'Canis lupus familiaris'),
+(@dog_id, 'Canis familiaris'),
 (LAST_INSERT_ID(), 'Felis catus')
 (LAST_INSERT_ID(), 'Felis silvestris catus')
+;
+
+-- lägg till katt
+INSERT INTO species () VALUES (); --sparar id i en variabel
+SET @cat_id = LAST_INSERT_ID();
+
+INSERT INTO species_common_names (species_id, common_name) VALUES
+(@cat_id, 'Katt'),
+(@cat_id, 'kissemiss')
+;
+
+INSERT INTO species_latin_names (species_id, latin_name) VALUES
+(@cat_id, 'Felis catus'),
+(@cat_id, 'Felis silvestris catus')
 ;
 
 COMMIT;
