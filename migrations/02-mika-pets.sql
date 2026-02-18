@@ -5,14 +5,22 @@
 
 USE ace_ventura;
 
--- Skapa tabellen för arter
+-- Skapar art-tabellen nu utan namn
 SET autocommit = 0;
 CREATE TABLE IF NOT EXISTS species (
     species_id INT AUTO_INCREMENT PRIMARY KEY,
-    common_name VARCHAR(100) NOT NULL,
-    latin_name VARCHAR(100) NOT NULL
 );
 COMMIT;
+
+-- Tabellen för vanliga namn (kan ha flera namn)
+CREATE TABLE IF NOT EXISTS species_common_names (
+
+)
+
+-- Tabellen för latinska namn (kan ha flera namn)
+CREATE TABLE IF NOT EXISTS species_latin_names (
+
+)
 
 -- Skapa tabellen för husdjur
 SET autocommit = 0;
