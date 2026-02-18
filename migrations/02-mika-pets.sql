@@ -14,13 +14,19 @@ COMMIT;
 
 -- Tabellen för vanliga namn (kan ha flera namn)
 CREATE TABLE IF NOT EXISTS species_common_names (
-
-)
+name_id INT AUTO_INCREMENT PRIMARY KEY,
+species_id INT NOT NULL,
+common_name VARCHAR(100) NOT NULL,
+FOREIGN KEY (species_id) REFERENCES species (species_id) ON DELETE CASCADE
+);
 
 -- Tabellen för latinska namn (kan ha flera namn)
 CREATE TABLE IF NOT EXISTS species_latin_names (
-
-)
+name_id INT AUTO_INCREMENT PRIMARY KEY,
+species_id INT NOT NULL,
+latin_name VARCHAR(100) NOT NULL,
+FOREIGN KEY (species_id) REFERENCES species (species_id) ON DELETE CASCADE
+);
 
 -- Skapa tabellen för husdjur
 SET autocommit = 0;
@@ -39,11 +45,22 @@ COMMIT;
 
 -- Testdata för arter (5.3.1)
 SET autocommit = 0;
-INSERT INTO species (common_name, latin_name) VALUES
-('Hund', 'Canis Familiaris'),
-('Katt', 'Felis Catus'),
-('Tiger', 'Panthera tigris')
+INSERT INTO species () VALUES ();
+
+INSERT INTO species_common_names (species_id, common_name) VALUES
+(LAST_INSERT_ID(), 'Hund'),
+(LAST_INSERT_ID(), 'Voffsis'),
+(LAST_INSERT_ID(), 'Katt'),
+(LAST_INSERT_ID(), 'kissemiss')
 ;
+
+INSERT INTO species_latin_names (species_id, latin_name) VALUES
+(LAST_INSERT_ID(), 'Canis lupus familiaris'),
+(LAST_INSERT_ID(), 'Canis familiaris'),
+(LAST_INSERT_ID(), 'Felis catus')
+(LAST_INSERT_ID(), 'Felis silvestris catus')
+;
+
 COMMIT;
 
 -- Testdata för husdjur (5.3.2-5.3.4)
