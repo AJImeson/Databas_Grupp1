@@ -68,4 +68,4 @@ BEGIN
     VALUES ('inventory', OLD.inventory_id, 'DELETE', CONCAT('SKU:', OLD.sku, ' was deleted'), USER());
 END; //
 
-DELIMITER; 
+DELIMITER ; 
