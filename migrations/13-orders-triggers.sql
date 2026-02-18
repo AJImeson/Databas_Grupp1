@@ -1,5 +1,5 @@
 
-SE ace_ventura;
+USE ace_ventura;
 
 DELIMITER //
 

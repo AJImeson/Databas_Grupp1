@@ -1,6 +1,8 @@
 
 USE ace_ventura;
 
+DELIMITER //
+
 -- Users Triggers
 
 -- Insert
