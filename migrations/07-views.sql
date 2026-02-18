@@ -51,14 +51,14 @@ JOIN warehouses USING (warehouse_id)
 -- Vy för djur ägare (uppdaterad)
 CREATE OR REPLACE VIEW view_user_pets AS
 SELECT
-    u.username AS owner_name,
-    p.given_name AS pet_name,
-    GROUP_CONCAT(DISTINCT cn.common_name SEPARATOR ', ') AS species_names,
-    p.is_alive
-FROM users u
-JOIN pets p ON u.user_id = user_id
-JOIN species_common_names cn ON p.species_id = cn.species_id
-GROUP BY p.pet_id
+    users.username AS owner_name,
+    pets.given_name AS pet_name,
+    GROUP_CONCAT(DISTINCT species_common_name.common_name SEPARATOR ', ') AS species_names,
+    pets.is_alive
+FROM users 
+JOIN pets ON users.user_id = pets.user_id
+JOIN species_common_names ON pets.species_id = species_common_names.species_id
+GROUP BY pets.pet_id
 ;
 
 
