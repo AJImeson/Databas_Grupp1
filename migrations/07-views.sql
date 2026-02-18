@@ -53,7 +53,7 @@ CREATE OR REPLACE VIEW view_user_pets AS
 SELECT
     u.username AS owner_name,
     p.given_name AS pet_name,
-    GROUP_CONCAT(DISTINCT cn.common_name SEPARATOR ', ' AS species_names,
+    GROUP_CONCAT(DISTINCT cn.common_name SEPARATOR ', ') AS species_names,
     p.is_alive
 FROM users u
 JOIN pets p ON u.user_id = user_id
