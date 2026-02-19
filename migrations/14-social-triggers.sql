@@ -1,9 +1,10 @@
+-- Social
 
 USE ace_ventura;
 
 DELIMITER //
 
--- Social (Messages)
+-- Messages
 
 -- Insert
 CREATE TRIGGER messages_insert
