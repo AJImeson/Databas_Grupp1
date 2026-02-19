@@ -1,91 +1,72 @@
--- Orders
 
+-- Pets Triggers
 USE ace_ventura;
-
 DELIMITER //
 
--- Order Status
-
-CREATE TRIGGER order_status_insert 
-AFTER INSERT ON order_status 
+-- Species ID Creation
+CREATE OR TRIGGER species_insert
+AFTER INSERT ON species
 FOR EACH ROW
 BEGIN
-    INSERT INTO order_activities (orders_id, modification, modified_value, changed_by)
-    VALUES (NEW.status_id, 'INSERT', NEW.status_name, USER());
+    INSERT INTO pets_activities (pets_id, modification, modified_value, changed_by)
+    VALUES (NEW.species_id, 'INSERT', 'New Species Record Created', USER());
 END; //
 
--- Orders
-
--- Insert
-CREATE TRIGGER orders_insert 
-AFTER INSERT ON orders 
+-- Species Name Creation 
+CREATE OR TRIGGER species_common_name_insert
+AFTER INSERT ON species_common_names
 FOR EACH ROW
 BEGIN
-    INSERT INTO order_activities (orders_id, modification, modified_value, changed_by)
-    VALUES (NEW.order_id, 'INSERT', CONCAT('User:', NEW.user_id, ' StatusID:', NEW.status_id), USER());
+    INSERT INTO pets_activities (pets_id, modification, modified_value, changed_by)
+    VALUES (NEW.species_id, 'INSERT', NEW.common_name, USER());
 END; //
 
--- Update
-CREATE TRIGGER orders_update 
-AFTER UPDATE ON orders 
+-- Pets Insert 
+CREATE OR TRIGGER pets_insert
+AFTER INSERT ON pets
 FOR EACH ROW
 BEGIN
-    -- Status 
-    IF OLD.status_id <> NEW.status_id THEN
-        INSERT INTO order_activities (orders_id, modification, former_value, modified_value, changed_by)
-        VALUES (OLD.order_id, 'UPDATE', CAST(OLD.status_id AS CHAR), CAST(NEW.status_id AS CHAR), USER());
+    INSERT INTO pets_activities (pets_id, modification, modified_value, changed_by)
+    VALUES (NEW.pet_id, 'INSERT', CONCAT('Name: ', NEW.given_name, ' | Desc: ', IFNULL(NEW.description, 'None')), USER());
+END; //
+
+-- Pets Update
+CREATE OR TRIGGER pets_update
+AFTER UPDATE ON pets
+FOR EACH ROW
+BEGIN
+    -- Name change
+    IF OLD.given_name <> NEW.given_name THEN
+        INSERT INTO pets_activities (pets_id, modification, former_value, modified_value, changed_by)
+        VALUES (OLD.pet_id, 'UPDATE', OLD.given_name, NEW.given_name, USER());
     END IF;
 
-    -- Shipping Address 
-    IF OLD.shipping_address_id <> NEW.shipping_address_id THEN
-        INSERT INTO order_activities (orders_id, modification, former_value, modified_value, changed_by)
-        VALUES (OLD.order_id, 'UPDATE', CONCAT('Address:', OLD.shipping_address_id), CONCAT('Address:', NEW.shipping_address_id), USER());
-    END IF;
-END; //
-
--- Delete
-CREATE TRIGGER orders_delete 
-BEFORE DELETE ON orders 
-FOR EACH ROW
-BEGIN
-    INSERT INTO order_activities (orders_id, modification, former_value, changed_by)
-    VALUES (OLD.order_id, 'DELETE', CONCAT('Order for User:', OLD.user_id), USER());
-END; //
-
--- Order Items
-CREATE TRIGGER order_items_insert 
-AFTER INSERT ON order_items 
-FOR EACH ROW
-BEGIN
-    INSERT INTO order_activities (orders_id, modification, modified_value, changed_by)
-    VALUES (NEW.items_id, 'INSERT', CONCAT('SKU:', NEW.sku, ' Qty:', NEW.qty, ' Price:', NEW.sale_price), USER());
-END; //
-
--- Update
-CREATE TRIGGER order_items_update 
-AFTER UPDATE ON order_items 
-FOR EACH ROW
-BEGIN
-    -- Quantity 
-    IF OLD.qty <> NEW.qty THEN
-        INSERT INTO order_activities (orders_id, modification, former_value, modified_value, changed_by)
-        VALUES (OLD.items_id, 'UPDATE', CAST(OLD.qty AS CHAR), CAST(NEW.qty AS CHAR), USER());
+    -- Owner change
+    IF OLD.user_id <> NEW.user_id THEN
+        INSERT INTO pets_activities (pets_id, modification, former_value, modified_value, changed_by)
+        VALUES (OLD.pet_id, 'UPDATE', CAST(OLD.user_id AS CHAR), CAST(NEW.user_id AS CHAR), USER());
     END IF;
 
-    -- Price 
-    IF OLD.sale_price <> NEW.sale_price THEN
-        INSERT INTO order_activities (orders_id, modification, former_value, modified_value, changed_by)
-        VALUES (OLD.items_id, 'UPDATE', CAST(OLD.sale_price AS CHAR), CAST(NEW.sale_price AS CHAR), USER());
+    -- Status change
+    IF OLD.is_alive <> NEW.is_alive THEN
+        INSERT INTO pets_activities (pets_id, modification, former_value, modified_value, changed_by)
+        VALUES (OLD.pet_id, 'UPDATE', IF(OLD.is_alive, '1', '0'), IF(NEW.is_alive, '1', '0'), USER());
+    END IF;
+
+    -- Description/Activity change 
+    IF NOT (OLD.description <=> NEW.description) THEN
+        INSERT INTO pets_activities (pets_id, modification, former_value, modified_value, changed_by)
+        VALUES (OLD.pet_id, 'UPDATE', OLD.description, NEW.description, USER());
     END IF;
 END; //
 
--- Delete
-CREATE TRIGGER order_items_delete 
-BEFORE DELETE ON order_items 
+--  Pets Delete
+CREATE OR REPLACE TRIGGER pets_delete
+BEFORE DELETE ON pets
 FOR EACH ROW
 BEGIN
-    INSERT INTO order_activities (orders_id, modification, former_value, changed_by)
-    VALUES (OLD.items_id, 'DELETE', CONCAT('SKU:', OLD.sku, ' from Order:', OLD.order_id), USER());
+    INSERT INTO pets_activities (pets_id, modification, former_value, changed_by)
+    VALUES (OLD.pet_id, 'DELETE', CONCAT('Name: ', OLD.given_name, ' | Final Desc: ', IFNULL(OLD.description, 'None')), USER());
 END; //
 
 DELIMITER ;
