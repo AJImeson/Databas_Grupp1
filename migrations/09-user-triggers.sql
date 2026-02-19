@@ -11,88 +11,81 @@ CREATE TRIGGER users_insert
 AFTER INSERT ON users
 FOR EACH ROW
 BEGIN
-    INSERT INTO activities (table_name, record_id, modification, modified_value, changed_by)
-    VALUES ('users', NEW.user_id, 'INSERT', NEW.username, USER());
+    INSERT INTO user_activities (record_id, modification, modified_value, changed_by)
+    VALUES (NEW.user_id, 'INSERT', NEW.username, USER());
 END; //
 
 -- Update
-
 CREATE TRIGGER users_update
 AFTER UPDATE ON users
 FOR EACH ROW 
 BEGIN
 
-    -- Email Change	
-
+    -- Email	
     IF OLD.email <> NEW.email THEN	
-        INSERT INTO activities_users (table_name, record_id, modification, former_value, modified_value, changed_by)
-        VALUES ('users', OLD.user_id, 'UPDATE', OLD.email, NEW.email, USER());
+        INSERT INTO user_activities (record_id, modification, former_value, modified_value, changed_by)
+        VALUES (OLD.user_id, 'UPDATE', OLD.email, NEW.email, USER());
     END IF;
 
-    -- Username Change
-
+    -- Username
     IF OLD.username <> NEW.username THEN
-	INSERT INTO activities_users (table_name, record_id, modification, former_value, modified_value, changed_by)
-	VALUES ('users', OLD.user_id, 'UPDATE', OLD.username, NEW.username, USER());
+        INSERT INTO user_activities (record_id, modification, former_value, modified_value, changed_by)
+        VALUES (OLD.user_id, 'UPDATE', OLD.username, NEW.username, USER());
     END IF;
 
-    -- Email confirmation Change
-
+    -- Email Confirmation
     IF OLD.email_confirmed <> NEW.email_confirmed THEN
-	INSERT INTO activities_users (table_name, record_id, modification, former_value, modified_value, changed_by)
-	VALUES ('users', OLD.user_id, 'UPDATE', OLD.email_confirmed, NEW.email_confirmed, USER());
+        INSERT INTO user_activities (record_id, modification, former_value, modified_value, changed_by)
+        VALUES (OLD.user_id, 'UPDATE', OLD.email_confirmed, NEW.email_confirmed, USER());
     END IF;
 
 END; //
 
 -- Delete
-
 CREATE TRIGGER users_delete
 BEFORE DELETE ON users
 FOR EACH ROW
 BEGIN
-    INSERT INTO activities (table_name, record_id, modification, former_value, changed_by)
-    VALUES ('users', OLD.user_id, 'DELETE', OLD.username, USER());
+    INSERT INTO user_activities (record_id, modification, former_value, changed_by)
+    VALUES (OLD.user_id, 'DELETE', OLD.username, USER());
 END; //
 
 -- Addresses Triggers 
 
 -- Insert 
-
 CREATE TRIGGER addresses_insert
 AFTER INSERT ON addresses
 FOR EACH ROW
 BEGIN
-    INSERT INTO activities (table_name, record_id, modification, modified_value, changed_by)
-    VALUES ('addresses', NEW.addresses_id, 'INSERT', NEW.street, USER());
+    INSERT INTO address_activities (record_id, modification, modified_value, changed_by)
+    VALUES (NEW.addresses_id, 'INSERT', NEW.street, USER());
 END; //
 
 -- Update
-
 CREATE TRIGGER addresses_update
 AFTER UPDATE ON addresses
 FOR EACH ROW
 BEGIN
+    -- Street 
     IF OLD.street <> NEW.street THEN
-        INSERT INTO activities (table_name, record_id, modification, former_value, modified_value, changed_by)
-        VALUES ('addresses', OLD.addresses_id, 'UPDATE', OLD.street, NEW.street, USER());
+        INSERT INTO address_activities (record_id, modification, former_value, modified_value, changed_by)
+        VALUES (OLD.addresses_id, 'UPDATE', OLD.street, NEW.street, USER());
     END IF;
 
+    -- City
     IF OLD.city <> NEW.city THEN
-        INSERT INTO activities (table_name, record_id, modification, former_value, modified_value, changed_by)
-        VALUES ('addresses', OLD.addresses_id, 'UPDATE', OLD.city, NEW.city, USER());
+        INSERT INTO address_activities (record_id, modification, former_value, modified_value, changed_by)
+        VALUES (OLD.addresses_id, 'UPDATE', OLD.city, NEW.city, USER());
     END IF;
 END; //
 
 -- Delete
-
 CREATE TRIGGER addresses_delete
 BEFORE DELETE ON addresses
 FOR EACH ROW
 BEGIN
-    INSERT INTO activities (table_name, record_id, modification, former_value, changed_by)
-    VALUES ('addresses', OLD.addresses_id, 'DELETE', CONCAT(OLD.street, ', ', OLD.city), USER());
+    INSERT INTO address_activities (record_id, modification, former_value, changed_by)
+    VALUES (OLD.addresses_id, 'DELETE', CONCAT(OLD.street, ', ', OLD.city), USER());
 END; //
 
 DELIMITER ;
-
