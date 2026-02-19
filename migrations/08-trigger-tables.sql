@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS orders_activities(
 
 -- Social
 
-CREATE TABLE IF NOT EXISTS social_activities( --Haha
+CREATE TABLE IF NOT EXISTS social_activities( 
     log_id INT AUTO_INCREMENT PRIMARY KEY,
     social_id INT NOT NULL,
     modification ENUM('INSERT', 'UPDATE', 'DELETE') NOT NULL,
