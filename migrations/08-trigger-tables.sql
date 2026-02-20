@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS user_activities (
 
 CREATE TABLE IF NOT EXISTS pets_activities(
     log_id INT AUTO_INCREMENT PRIMARY KEY,
-    pets_id INT NOT NULL,
+    pet_id INT NOT NULL,
     modification ENUM('INSERT', 'UPDATE', 'DELETE') NOT NULL,
     former_value TEXT,
     modified_value TEXT,
