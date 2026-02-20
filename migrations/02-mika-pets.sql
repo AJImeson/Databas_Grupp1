@@ -5,14 +5,28 @@
 
 USE ace_ventura;
 
--- Skapa tabellen för arter
+-- Skapar art-tabellen nu utan namn
 SET autocommit = 0;
 CREATE TABLE IF NOT EXISTS species (
-    species_id INT AUTO_INCREMENT PRIMARY KEY,
-    common_name VARCHAR(100) NOT NULL,
-    latin_name VARCHAR(100) NOT NULL
+    species_id INT AUTO_INCREMENT PRIMARY KEY
 );
 COMMIT;
+
+-- Tabellen för vanliga namn (kan ha flera namn)
+CREATE TABLE IF NOT EXISTS species_common_names (
+    name_id INT AUTO_INCREMENT PRIMARY KEY,
+    species_id INT NOT NULL,
+    common_name VARCHAR(100) NOT NULL,
+    FOREIGN KEY (species_id) REFERENCES species (species_id) ON DELETE CASCADE
+);
+
+-- Tabellen för latinska namn (kan ha flera namn)
+CREATE TABLE IF NOT EXISTS species_latin_names (
+    name_id INT AUTO_INCREMENT PRIMARY KEY,
+    species_id INT NOT NULL,
+    latin_name VARCHAR(100) NOT NULL,
+    FOREIGN KEY (species_id) REFERENCES species (species_id) ON DELETE CASCADE
+);
 
 -- Skapa tabellen för husdjur
 SET autocommit = 0;
@@ -29,19 +43,44 @@ CREATE TABLE IF NOT EXISTS pets (
 );
 COMMIT;
 
--- Testdata för arter (5.3.1)
+-- Testdata  (5.3.1)
 SET autocommit = 0;
-INSERT INTO species (common_name, latin_name) VALUES
-('Hund', 'Canis Familiaris'),
-('Katt', 'Felis Catus'),
-('Tiger', 'Panthera tigris')
+-- Testdata för Hund
+INSERT INTO species () VALUES ();
+SET @dog_id = LAST_INSERT_ID() -- sparar id i en variabel
 ;
+
+INSERT INTO species_common_names (species_id, common_name) VALUES
+(@dog_id, 'Hund'),
+(@dog_id, 'Voffsis')
+;
+
+INSERT INTO species_latin_names (species_id, latin_name) VALUES
+(@dog_id, 'Canis lupus familiaris'),
+(@dog_id, 'Canis familiaris')
+;
+
+-- lägg till katt
+INSERT INTO species () VALUES (); --sparar id i en variabel
+SET @cat_id = LAST_INSERT_ID()
+;
+
+INSERT INTO species_common_names (species_id, common_name) VALUES
+(@cat_id, 'Katt'),
+(@cat_id, 'kissemiss')
+;
+
+INSERT INTO species_latin_names (species_id, latin_name) VALUES
+(@cat_id, 'Felis catus'),
+(@cat_id, 'Felis silvestris catus')
+;
+
 COMMIT;
 
 -- Testdata för husdjur (5.3.2-5.3.4)
 SET autocommit = 0;
 INSERT INTO pets (user_id, species_id, given_name, date_of_birth, description, is_alive)
-VALUES (1, 1, 'Nalle', '2022-05-16', 'En busig retriever.', 1)
+VALUES (1, @dog_id, 'Nalle', '2022-05-16', 'En busig retriever.', 1)
 ;
 COMMIT;
 SET FOREIGN_KEY_CHECKS = 1;
